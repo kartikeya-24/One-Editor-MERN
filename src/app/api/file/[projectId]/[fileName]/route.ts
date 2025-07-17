@@ -35,9 +35,7 @@ export async function GET(
       //http://localhost:3000/api/file/projectId/fileNamewithExtension
       //src="@/" => /http://localhost:3000/api/file/projectId
 
-      const host = request.headers.get("host"); //domain
-      const protocol = host?.includes("localhost") ? "http" : "https";
-      const DOMAIN = `${protocol}://${host}`;
+      const DOMAIN = request.nextUrl.origin;
 
       const URL = `${DOMAIN}/api/file/${projectId}`
       const replaceHTML = content.replace(/(src|href)=["']@(.*?)["']/g,`$1=${URL}$2`);

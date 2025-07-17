@@ -6,9 +6,7 @@ import { ForgotPasswordEmail } from "@/components/template/ForgotPasswordEmail";
 import { connectDB } from "@/config/connectDB";
 
 export async function POST(request: NextRequest) {
-    const host = request.headers.get('host') //domain 
-    const protocol =host?.includes('localhost') ? 'http' : 'https'
-    const DOMAIN = `${protocol}://${host}`
+    const DOMAIN = request.nextUrl.origin;
   try {
     const { email } = await request.json();
 
